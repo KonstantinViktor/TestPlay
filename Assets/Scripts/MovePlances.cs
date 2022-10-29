@@ -26,7 +26,6 @@ public class MovePlances : MonoBehaviour
             Vector2 pos = MousePos - _grid.OffSet;
 
             _objMove.transform.position = _grid.GridCell[(int)((pos.x / _grid.Size.x)), (int)((pos.y / _grid.Size.y))];
-            print(_objMove.transform.position);
             _objMove = null;
         }
     }

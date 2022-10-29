@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Grid.cs" />
     <Compile Include="Assets\Scripts\SpawnPlance.cs" />
     <Compile Include="Assets\Scripts\BasePlance.cs" />
+    <Compile Include="Assets\Scripts\StatusPlance.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

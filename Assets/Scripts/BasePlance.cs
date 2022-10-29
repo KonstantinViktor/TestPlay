@@ -5,26 +5,18 @@ using System.Collections.Generic;
 [CreateAssetMenu()]
 public class BasePlance : ScriptableObject
 {
-    [SerializeField] private List<MyClass> ss;
+    [SerializeField] private List<StatusPlance> _basePlances;
 
-    [SerializeField] private Dictionary<int, GameObject> s;
+    [SerializeField] private Dictionary<int, GameObject> _dictionary;
 
-    public Dictionary<int, GameObject> D => s;
-    private void OnEnable()
+    public Dictionary<int, GameObject> Diction => _dictionary;
+    public void CreatDictionaty()
     {
-        for (int i = 0; i < ss.Count; i++)
+        _dictionary = new Dictionary<int, GameObject>();
+
+        for (int i = 0; i < _basePlances.Count; i++)
         {
-            s.Add(ss[i].Key, ss[i].Plance);
+            _dictionary.Add(_basePlances[i].Key, _basePlances[i].Plance);
         }
-    }
-
-    [Serializable]
-    class MyClass
-    {
-        [SerializeField] private int _key;
-        [SerializeField] private GameObject _plance;
-
-        public int Key => _key;
-        public GameObject Plance => _plance;
     }
 }
