@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\SpawnPlance.cs" />
     <Compile Include="Assets\Scripts\BasePlance.cs" />
     <Compile Include="Assets\Scripts\StatusPlance.cs" />
+    <Compile Include="Assets\Scripts\CubeMove.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
