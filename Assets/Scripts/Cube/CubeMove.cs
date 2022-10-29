@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class CubeMove : MonoBehaviour
 {
+    public int Id;
+
     [SerializeField] private float _speed;
+    [SerializeField] private float _maxPosX;
     [SerializeField] private float _radius = 0.2f;
 
     private Transform cube;
@@ -36,6 +39,11 @@ public class CubeMove : MonoBehaviour
                 cube.Translate(hit.transform.right * _speed * Time.deltaTime);
             else
                 cube.Translate(-cube.up * _speed * Time.deltaTime);
+        }
+
+        if (cube.position.x >= _maxPosX)
+        {
+            FindObjectOfType<FinishPlay>().Finish();
         }
     }
 }

@@ -56,14 +56,16 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\MovePlances.cs" />
-    <Compile Include="Assets\Scripts\Grid.cs" />
-    <Compile Include="Assets\Scripts\SpawnPlance.cs" />
-    <Compile Include="Assets\Scripts\BasePlance.cs" />
-    <Compile Include="Assets\Scripts\StatusPlance.cs" />
-    <Compile Include="Assets\Scripts\CubeMove.cs" />
-    <Compile Include="Assets\Scripts\SpawnCube.cs" />
-    <Compile Include="Assets\Scripts\SceneControler.cs" />
+    <Compile Include="Assets\Scripts\Plance\MovePlances.cs" />
+    <Compile Include="Assets\Scripts\Bases\Grid.cs" />
+    <Compile Include="Assets\Scripts\Plance\SpawnPlance.cs" />
+    <Compile Include="Assets\Scripts\Plance\BasePlance.cs" />
+    <Compile Include="Assets\Scripts\Plance\StatusPlance.cs" />
+    <Compile Include="Assets\Scripts\Cube\CubeMove.cs" />
+    <Compile Include="Assets\Scripts\Cube\SpawnCube.cs" />
+    <Compile Include="Assets\Scripts\Bases\SceneControler.cs" />
+    <Compile Include="Assets\Scripts\Bases\FinishPlay.cs" />
+    <Compile Include="Assets\Scripts\Bases\Record.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
