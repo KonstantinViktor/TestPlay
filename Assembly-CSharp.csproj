@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\MovePlances.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
+    <Compile Include="Assets\Scripts\SpawnPlance.cs" />
+    <Compile Include="Assets\Scripts\BasePlance.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

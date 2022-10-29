@@ -8,12 +8,12 @@ public class Grid : MonoBehaviour
     [SerializeField] private int _sizeWight;
     [SerializeField] private int _sizeHight;
 
-    [SerializeField] private Vector2 offset;
+    [SerializeField] private Vector2 _offset = new Vector2(9, 31);
 
     private Vector2[,] _grid;
 
     public Vector2[,] GridCell { get => _grid; private set => _grid = value; }
-    public Vector2 OffSet { get => offset; private set => offset = value; }
+    public Vector2 OffSet { get => _offset; private set => _offset = value; }
     public Vector2 Size { get => new Vector2(_sizeWight, _sizeHight); }
 
     private void OnValidate()
@@ -34,7 +34,7 @@ public class Grid : MonoBehaviour
         {
             for (int j = 0; j < _countHight; j++)
             {
-                _grid[i, j] = offset + new Vector2(_sizeWight * i, _sizeHight * j);
+                _grid[i, j] = _offset + new Vector2(_sizeWight * i, _sizeHight * j);
             }
         }
     }
