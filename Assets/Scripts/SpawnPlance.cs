@@ -11,7 +11,7 @@ public class SpawnPlance : MonoBehaviour
 
     [SerializeField] private BasePlance _basePlance;
 
-    private void Start()
+    public void Creat()
     {
         CreatPlances();
     }

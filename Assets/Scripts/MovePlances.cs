@@ -4,6 +4,7 @@ public class MovePlances : MonoBehaviour
 {
     [SerializeField] private LayerMask _layerPlance;
     [SerializeField] private float _distancy = 100;
+    [SerializeField] private Vector2 offset;
 
     private GameObject _objMove;
     private Grid _grid;
@@ -25,19 +26,27 @@ public class MovePlances : MonoBehaviour
         {
             Vector2 pos = MousePos - _grid.OffSet;
 
-            _objMove.transform.position = _grid.GridCell[(int)((pos.x / _grid.Size.x)), (int)((pos.y / _grid.Size.y))];
+            _objMove.transform.position = _grid.GridCell[(int)((pos.x / (_grid.Size.x - offset.x))), (int)((pos.y / (_grid.Size.y - offset.y)))];
             _objMove = null;
         }
     }
 
     private void MovePlance()
     {
-        var rayMouse = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (_objMove == null)
+        {
+            var rayMouse = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        RaycastHit hit;
+            RaycastHit hit;
 
-        if (Physics.Raycast(rayMouse, out hit, _distancy, _layerPlance))
-            _objMove = hit.collider.gameObject.transform.parent.gameObject;
+            if (Physics.Raycast(rayMouse, out hit, _distancy, _layerPlance))
+            {
+                if (hit.transform.parent != null)
+                    _objMove = hit.transform.parent.gameObject;
+                else
+                    _objMove = hit.collider.gameObject;
+            }
+        }
 
         if (_objMove != null)
             _objMove.transform.position = MousePos;
