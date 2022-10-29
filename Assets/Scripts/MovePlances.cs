@@ -9,15 +9,21 @@ public class MovePlances : MonoBehaviour
     private GameObject _objMove;
     private Grid _grid;
 
+    public bool IsPause { get; set; }
+
     private Vector2 MousePos => Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
     private void Start()
     {
         _grid = GetComponent<Grid>();
+        IsPause = false;
     }
 
     private void Update()
     {
+        if (IsPause)
+            return;
+
         if (Input.GetMouseButton(0))
         {
             MovePlance();
@@ -29,6 +35,7 @@ public class MovePlances : MonoBehaviour
             _objMove.transform.position = _grid.GridCell[(int)((pos.x / (_grid.Size.x - offset.x))), (int)((pos.y / (_grid.Size.y - offset.y)))];
             _objMove = null;
         }
+
     }
 
     private void MovePlance()

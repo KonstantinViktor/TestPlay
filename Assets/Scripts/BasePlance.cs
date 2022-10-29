@@ -10,6 +10,7 @@ public class BasePlance : ScriptableObject
     [SerializeField] private Dictionary<int, GameObject> _dictionary;
 
     public Dictionary<int, GameObject> Diction => _dictionary;
+
     public void CreatDictionaty()
     {
         _dictionary = new Dictionary<int, GameObject>();
