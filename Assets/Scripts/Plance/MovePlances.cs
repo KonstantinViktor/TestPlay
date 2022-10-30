@@ -1,29 +1,26 @@
 using UnityEngine;
 
-public class MovePlances : MonoBehaviour
+public class MovePlances
 {
-    [SerializeField] private LayerMask _layerPlance;
-    [SerializeField] private float _distancy = 100;
-    [SerializeField] private Vector2 offset;
+    private LayerMask _layerPlance = 4;
+    private float _distancy = 100;
+    private Vector2 offset = new Vector2(3, 2);
 
-    private GameObject _objMove;
     private Grid _grid;
 
-    public bool IsPause { get; set; }
+    private GameObject _objMove;
 
     private Vector2 MousePos => Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-    private void Start()
+    public MovePlances(Grid grid, FinishPlay finish)
     {
-        _grid = GetComponent<Grid>();
-        IsPause = false;
+        _grid = grid;
+
+        finish.Move += Move;
     }
 
-    private void Update()
+    private void Move()
     {
-        if (IsPause)
-            return;
-
         if (Input.GetMouseButton(0))
         {
             MovePlance();

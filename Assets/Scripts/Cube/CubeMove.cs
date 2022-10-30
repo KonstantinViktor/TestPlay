@@ -2,48 +2,68 @@ using UnityEngine;
 
 public class CubeMove : MonoBehaviour
 {
-    public int Id;
+    public delegate void Finish(int cubeId);
+    public event Finish Finaliti;
 
-    [SerializeField] private float _speed;
-    [SerializeField] private float _maxPosX;
+    [SerializeField] private float _speed = 8;
+    [SerializeField] private float _maxPosX = 0;
     [SerializeField] private float _radius = 0.2f;
 
-    private Transform cube;
+    [SerializeField] private int _id;
 
-    private bool isMove = true;
+    private Transform _cube;
+    private FinishPlay _finish;
 
-    public bool IsPause { get; set; }
+    private bool isSetStartPosision = false;
 
     private Vector2 MousePos => Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-    private void Start()
+    public void Start()
     {
-        cube = GetComponent<Transform>();
-        IsPause = false;
+        _cube = GetComponent<Transform>();
+        _finish = FindObjectOfType<FinishPlay>();
+
+        Finaliti += _finish.Finish;
     }
 
     private void Update()
     {
-        if (IsPause)
-            return;
-
-        if (Input.GetMouseButton(0) && isMove)
+        if (!_finish.IsPause)
         {
-            cube.position = MousePos;
-            isMove = false;
+            if (!isSetStartPosision)
+                SetStartPosision();
+            if (isSetStartPosision)
+                Move();
         }
-        else if (!isMove)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, -transform.up, out hit, _radius))
-                cube.Translate(hit.transform.right * _speed * Time.deltaTime);
-            else
-                cube.Translate(-cube.up * _speed * Time.deltaTime);
-        }
+    }
 
-        if (cube.position.x >= _maxPosX)
+    private void SetStartPosision()
+    {
+        if (Input.GetMouseButton(0))
         {
-            FindObjectOfType<FinishPlay>().Finish();
+            _cube.position = MousePos;
+            isSetStartPosision = true;
+        }
+    }
+
+    private void Move()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(_cube.position, -_cube.up, out hit, _radius))
+            _cube.Translate(hit.transform.right * _speed * Time.deltaTime);
+        else
+            _cube.Translate(-_cube.up * _speed * Time.deltaTime);
+
+
+        DetectionPos();
+    }
+
+    private void DetectionPos()
+    {
+        if (_cube.position.x >= _maxPosX)
+        {
+            Finaliti?.Invoke(_id);
         }
     }
 }
