@@ -110,5 +110,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 8
   _maxPosX: 50
-  _radius: 0.2
+  _radius: 1
   _id: 2
